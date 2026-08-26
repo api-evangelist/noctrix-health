@@ -1,23 +1,104 @@
 aid: noctrix-health
 name: Noctrix Health
-description: 'Noctrix Health is a company surfaced via the API Evangelist harvest backlog (source: secondary-market)
-  and added to the network as a stub for full-pipeline profiling.'
+description: >-
+  Noctrix Health, Inc. is a Pleasanton, California medical device company that develops
+  drug-free wearable neurostimulation therapies for chronic neurological conditions. Its
+  product is the Nidra Tonic Motor Activation (TOMAC) System, a prescription pair of
+  lower-leg devices that stimulate the peroneal nerves to suppress the symptoms of
+  medication-refractory moderate-to-severe Restless Legs Syndrome and improve sleep
+  quality; the NTX100 received FDA De Novo marketing authorization in April 2023 after a
+  2020 Breakthrough Device Designation. Noctrix was acquired by Resmed and became a wholly
+  owned subsidiary on 1 June 2026. The company runs no developer program and publishes no
+  OpenAPI, SDK or API reference, but the Nidra product site is deliberately agent-ready:
+  it serves a hand-authored llms.txt with markdown twins of every key page, opts AI
+  crawlers in via robots.txt, and runs a live OAuth-protected Model Context Protocol
+  server discoverable through RFC 8414 and RFC 9728 well-known metadata.
+image: https://nidrarls.com/themes/nidra/assets/img/nidra-logo.png
 url: https://raw.githubusercontent.com/api-evangelist/noctrix-health/refs/heads/main/apis.yml
 x-type: company
 x-source: harvest:secondary-market
-x-tier: stub
-x-tier-reason: harvest
+x-tier: profiled
+x-tier-reason: enrichment
 specificationVersion: '0.20'
 created: '2026-08-26'
 modified: '2026-08-26'
 tags:
 - Company
-apis: []
+- Health
+- Medical Devices
+- Digital Health
+- Sleep
+- Neurology
+- Neurostimulation
+- Wearables
+- Model Context Protocol
+- Agent Readiness
+apis:
+- name: Nidra MCP Server
+  description: >-
+    A live Model Context Protocol server operated by Noctrix Health on the Nidra product
+    site. Discovered anonymously from RFC 9728 OAuth 2.0 Protected Resource Metadata at
+    https://nidrarls.com/.well-known/oauth-protected-resource, which names this endpoint
+    as the protected resource. It answers POST, GET and DELETE and is OAuth 2.0 gated —
+    an anonymous tools/list returns HTTP 401 with a correct RFC 9728 WWW-Authenticate
+    challenge — so the tool set and its input schemas are not publicly enumerable. This is
+    the only machine-readable API surface Noctrix Health publishes; there is no OpenAPI,
+    GraphQL, AsyncAPI or agent card on any host it operates.
+  humanURL: https://nidrarls.com/
+  baseURL: https://nidrarls.com/wp-json/mcp/mcp-oauth-server
+  tags:
+  - Model Context Protocol
+  - OAuth
+  - Agent Readiness
+  properties:
+  - type: MCPServer
+    url: mcp/noctrix-health-mcp.yml
+  - type: Authentication
+    url: authentication/noctrix-health-authentication.yml
+  - type: OAuthScopes
+    url: scopes/noctrix-health-scopes.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: DomainSecurity
+  url: security/noctrix-health-domain-security.yml
 - type: Website
-  url: https://forgeglobal.com/noctrix-health_stock/
+  url: https://noctrixhealth.com/
+- type: ProductSite
+  url: https://nidrarls.com/
+- type: ParentCompany
+  url: https://www.resmed.com/
+- type: Support
+  url: https://nidrarls.com/patient-support/
+- type: Pricing
+  url: https://nidrarls.com/cost/
+- type: PrivacyPolicy
+  url: https://nidrarls.com/privacy-policy/
+- type: TermsOfService
+  url: https://nidrarls.com/terms-of-use/
+- type: LLMsTxt
+  url: llms/noctrix-health-llms.txt
+- type: MCPServer
+  url: mcp/noctrix-health-mcp.yml
+- type: WellKnown
+  url: well-known/noctrix-health-well-known.yml
+- type: Authentication
+  url: authentication/noctrix-health-authentication.yml
+- type: OAuthScopes
+  url: scopes/noctrix-health-scopes.yml
+- type: Conformance
+  url: conformance/noctrix-health-conformance.yml
+- type: Conventions
+  url: conventions/noctrix-health-conventions.yml
+- type: Plans
+  url: plans/noctrix-health-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/noctrix-health-rate-limits.yml
+x-enrichment:
+  date: '2026-08-26'
+  status: enriched
+  artifacts_added: 12
+  pass: local-v1

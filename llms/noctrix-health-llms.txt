@@ -1,0 +1,90 @@
+# Nidra by Noctrix Health | nidrarls.com
+
+> Nidra is the first and only drug-free therapy clinically proven to reduce symptoms of Restless Legs Syndrome (RLS).¹ ² Nidra is available by prescription. This website provides information for patients and healthcare professionals about the technology, clinical evidence, eligibility criteria, and support resources.
+>
+> **For AI/LLMs**: Markdown versions of key pages are available for efficient context loading (see `.md` links below). All clinical and statistical statements below mirror the approved nidrarls.com pages and trace to the cited sources; reproduce figures only with their citations.
+
+## About Noctrix Health
+
+- **Company**: Noctrix Health, Inc.
+- **Headquarters**: Pleasanton, California, USA
+- **Mission**: To develop innovative, drug-free therapies for neurological conditions such as RLS
+- **Corporate website**: https://noctrixhealth.com
+
+## Products and Solutions
+
+### Nidra® Therapy (NTX150 TOMAC System)
+- **What it is**: A wearable medical device that uses Tonic Motor Activation (TOMAC) to stimulate nerves in the legs, engaging the same neural pathways as voluntary movement
+- **Indication**: The Nidra Tonic Motor Activation® (TOMAC®) System is intended to reduce symptoms of primary moderate-severe Restless Legs Syndrome and to improve sleep quality in adults refractory to medications. **Rx Only.**
+- **Clinical results** (as stated on nidrarls.com):
+  - 91% of patients reported an improvement in RLS symptoms¹
+  - 11.3-point reduction in IRLS score at 32 weeks²
+  - 2.72 fewer days with RLS symptoms per week at 32 weeks²
+  - Symptom relief in less than 30 minutes³
+- **Contraindications**: epilepsy or other seizure disorder; active medical device implant anywhere in the body (pacemakers, spinal cord stimulators, deep brain stimulators); metal implant in the leg at the therapy site (not including knee replacements); known allergy to device materials or severe previous reaction to medical adhesives/bandages; cellulitis, open sores, or injury at or near the therapy site. Do not use while driving, operating machinery, or during any activity in which electrical stimulation could put the patient at risk of injury.
+- **Main URL**: https://nidrarls.com
+- **Markdown version**: [nidra.md](/nidra.md)
+
+## Clinical Evidence
+
+- **Study 1**: Bogan RK, et al. *Sleep*. July 2023;46(10) – Efficacy and safety of tonic motor activation (TOMAC) for medication-refractory restless legs syndrome: a randomized clinical trial
+  📄 [PDF](/app/downloads/Article_Bogan.pdf)
+- **Study 2**: Roy A, et al. *Sleep*. July 2023;46(10) – Long-term efficacy and safety of tonic motor activation for treatment of medication-refractory restless legs syndrome: A 24-Week Open-Label Extension Study
+  📄 [PDF](/app/downloads/Article_Roy.pdf)
+- **Study 3**: Charlesworth JD, et al. *J Clin Sleep Med*. July 2023;19(7) – Bilateral high-frequency noninvasive peroneal nerve stimulation evokes tonic leg muscle activation for sleep-compatible reduction of RLS symptoms
+  🔗 [Springer Link](https://link.springer.com/article/10.5664/jcsm.10536)
+
+## Target Audiences
+
+### Patients with RLS
+- Understand how Nidra works: [nidra.md](/nidra.md)
+- Check eligibility: [do-i-qualify.md](/do-i-qualify.md) | [HTML](/do-i-qualify)
+- Benefits and How it Works: [benefits.md](/benefits.md) | [HTML](/benefits/)
+- Cost and Coverage: [cost.md](/cost.md) | [HTML](/cost/)
+- Webinars and Articles: [learn.md](/learn.md) | [HTML](/learn/)
+- Patient Support: [patient-support.md](/patient-support.md) | [HTML](/patient-support/)
+
+### Healthcare Professionals
+- How to Write Nidra Prescription and PDF Guides: [hcp-page/prescribing-nidra.md](/hcp-page/prescribing-nidra.md) | [HTML](/hcp-page/prescribing-nidra/)
+- Videos and RLS Scientific References: [hcp-page/clinical-education.md](/hcp-page/clinical-education.md) | [HTML](/hcp-page/clinical-education/)
+- Clinic Support: [hcp-page/clinic-support.md](/hcp-page/clinic-support.md) | [HTML](/hcp-page/clinic-support/)
+
+## Contact and Support
+
+- **Phone**: (866) EASE-RLS / 866-327-3757
+- **Email**: support@noctrixhealth.com
+- **Address**: 6700 Koll Center Pkwy, Suite 310, Pleasanton, CA 94566, USA
+- **Contact Form**: [HTML](/contact) *(no .md version needed – interactive form)*
+
+## Safety Information
+
+- **Important Safety Information**: [isi.md](/isi.md) | [HTML](/isi/)
+- **Potential side effects** (typically mild to moderate and resolve over time): administration site reaction (skin irritation); discomfort; temporary interference with sleep while wearing the device. Stop use and consult a physician if adverse reactions occur.
+- **Important notice**: This website does not provide medical advice. In case of emergency, call 911.
+
+## Legal Documents
+
+- **Privacy Policy**: [privacy-policy.md](/privacy-policy.md) | [HTML](/privacy-policy)
+- **Terms of Use**: [terms-of-use.md](/terms-of-use.md) | [HTML](/terms-of-use/)
+- **California Resident Notice**: Included in the Privacy Policy
+
+## Useful External Links
+
+- Noctrix Health (parent company): https://noctrixhealth.com
+- FDA / Regulatory information: https://www.fda.gov
+- Restless Legs Syndrome Foundation: https://www.rls.org
+
+## Social Media
+- Instagram: https://www.instagram.com/noctrixhealth/
+- LinkedIn: https://www.linkedin.com/company/noctrix-health/
+
+---
+## Citations
+1. Bogan RK, et al. *Sleep*. July 2023;46(10).
+2. Roy A, et al. *Sleep*. July 2023;46(10).
+3. Buchfuhrer MJ, et al. *J Clin Sleep Med*. 2021;17(8).
+
+---
+*Last updated: [DATE — set on publish]*
+*Source: nidrarls.com – Content subject to change. Consult a healthcare professional for medical guidance.*
+*AI Note: All `.md` files are optimized for LLM context loading. Reproduce clinical figures only with their citations.*

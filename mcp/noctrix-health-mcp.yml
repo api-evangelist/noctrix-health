@@ -1,0 +1,80 @@
+generated: '2026-08-26'
+method: probed
+source: https://nidrarls.com/.well-known/oauth-protected-resource
+name: Nidra MCP Server
+description: >-
+  Noctrix Health runs a live Model Context Protocol server on the Nidra product site
+  (nidrarls.com). It was discovered from RFC 9728 OAuth 2.0 Protected Resource Metadata
+  served anonymously at /.well-known/oauth-protected-resource, which names
+  https://nidrarls.com/wp-json/mcp/mcp-oauth-server as the protected resource. The
+  endpoint answers POST/GET/DELETE and is registered in the site's own WordPress REST
+  route index under the "mcp" namespace. It is OAuth-gated: an anonymous
+  tools/list returned HTTP 401 with a correct RFC 9728 WWW-Authenticate challenge, so
+  the live tool set and its inputSchemas could not be enumerated without credentials.
+status: published
+deployment:
+  mode: remote
+  endpoint: https://nidrarls.com/wp-json/mcp/mcp-oauth-server
+  auth: oauth
+  verified: probed
+  note: >-
+    Remote only. No stdio package, npx invocation, or install command is published by
+    Noctrix Health anywhere we could find; there is no public GitHub org content
+    (github.com/noctrixhealth exists but has 0 public repositories) and no npm/PyPI
+    package.
+servers:
+- name: mcp-oauth-server
+  endpoint: https://nidrarls.com/wp-json/mcp/mcp-oauth-server
+  methods: [POST, GET, DELETE]
+  auth: oauth
+  probe:
+    request: '{"jsonrpc":"2.0","id":1,"method":"tools/list"}'
+    http_status: 401
+    body: '{"code":"mcp_unauthorized","message":"MCP authentication required.","data":{"status":401}}'
+    www_authenticate: >-
+      Bearer realm="https://nidrarls.com",
+      resource_metadata="https://nidrarls.com/.well-known/oauth-protected-resource"
+    checked: '2026-08-26'
+- name: mcp-adapter-default-server
+  endpoint: https://nidrarls.com/wp-json/mcp/mcp-adapter-default-server
+  methods: [POST, GET, DELETE]
+  auth: oauth
+  probe:
+    request: '{"jsonrpc":"2.0","id":1,"method":"tools/list"}'
+    http_status: 401
+    body: '{"code":"rest_forbidden","message":"Sorry, you are not allowed to do that.","data":{"status":401}}'
+    checked: '2026-08-26'
+  note: >-
+    Second registered MCP route in the same namespace. Not named by the protected-resource
+    metadata, so mcp-oauth-server is treated as the canonical endpoint.
+authorization:
+  type: oauth2
+  authorization_server: https://nidrarls.com
+  metadata: https://nidrarls.com/.well-known/oauth-authorization-server
+  protected_resource_metadata: https://nidrarls.com/.well-known/oauth-protected-resource
+  grant_types: [authorization_code, refresh_token]
+  pkce: S256
+  scopes: [mcp]
+  dynamic_client_registration: false
+  client_id_metadata_document_supported: true
+  token_endpoint_auth_methods: [none]
+tools: []
+tools_note: >-
+  NOT ENUMERATED. The live tools/list is auth-gated (401). No llms.txt tool list, no docs
+  page and no repository publishes the tool names, so there is nothing to record without
+  fabricating it. Input schemas require authenticated introspection.
+implementation:
+  platform: WordPress
+  evidence: >-
+    The endpoints are WordPress REST routes (namespace "mcp") on a site whose /wp-json
+    index also advertises wp-abilities/v1 — the shape the WordPress MCP Adapter /
+    Abilities API produces. Recorded as an observation about how the server is hosted,
+    not as a vendor claim.
+related:
+  llms_txt: https://nidrarls.com/llms.txt
+  markdown_twins: >-
+    nidrarls.com publishes hand-authored .md twins of its key pages (/nidra.md,
+    /do-i-qualify.md, /benefits.md, /cost.md, ...) referenced from llms.txt. Together with
+    the MCP deployment this is deliberate agent-readiness work on a marketing/product site,
+    not an accidental default.
+checked: '2026-08-26'

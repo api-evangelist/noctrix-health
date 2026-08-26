@@ -1,0 +1,28 @@
+generated: '2026-08-26'
+method: probed
+source: https://nidrarls.com/.well-known/oauth-authorization-server
+name: Noctrix Health OAuth scopes
+description: >-
+  The Nidra MCP authorization server advertises exactly one scope. Both the RFC 8414
+  Authorization Server Metadata and the RFC 9728 Protected Resource Metadata list the same
+  single value, and no scope reference page is published anywhere on either host, so this
+  list is complete as published rather than a sample.
+authorization_server: https://nidrarls.com
+resource: https://nidrarls.com/wp-json/mcp/mcp-oauth-server
+docs: null
+docs_note: >-
+  No scopes/permissions reference page exists. Searched nidrarls.com (including its
+  llms.txt page inventory and .md twins) and noctrixhealth.com, which is bot-challenged.
+scope_count: 1
+scopes:
+- name: mcp
+  description: >-
+    Grants a client access to the Model Context Protocol server. Declared verbatim in
+    scopes_supported; the provider publishes no description, and none is invented here.
+  source: /.well-known/oauth-authorization-server
+  applies_to: https://nidrarls.com/wp-json/mcp/mcp-oauth-server
+  granularity: coarse
+  note: >-
+    A single undifferentiated scope. There is no read/write split, so a consent screen
+    cannot tell a user what the grant will let an agent do.
+checked: '2026-08-26'

@@ -1,0 +1,95 @@
+generated: '2026-08-26'
+method: probed
+source: https://nidrarls.com/.well-known/
+name: Noctrix Health standards conformance
+description: >-
+  Cross-cutting standards Noctrix Health's public surface actually demonstrates. Every
+  entry below is evidenced by a document fetched anonymously from nidrarls.com. Claims
+  the provider does not evidence are recorded as conforms:false rather than omitted.
+standards:
+- id: oauth2
+  name: OAuth 2.0 (RFC 6749)
+  conforms: true
+  evidence: >-
+    Authorization server metadata at https://nidrarls.com/.well-known/oauth-authorization-server
+    declares authorization_code + refresh_token grants with authorize/token/revoke endpoints.
+- id: rfc8414
+  name: OAuth 2.0 Authorization Server Metadata (RFC 8414)
+  conforms: true
+  evidence: >-
+    HTTP 200 application/json at /.well-known/oauth-authorization-server with issuer,
+    authorization_endpoint, token_endpoint, response_types_supported.
+- id: rfc9728
+  name: OAuth 2.0 Protected Resource Metadata (RFC 9728)
+  conforms: true
+  evidence: >-
+    HTTP 200 at /.well-known/oauth-protected-resource naming resource
+    https://nidrarls.com/wp-json/mcp/mcp-oauth-server, and the 401 from that endpoint
+    carries WWW-Authenticate with a matching resource_metadata parameter.
+- id: rfc7636
+  name: PKCE (RFC 7636)
+  conforms: true
+  evidence: code_challenge_methods_supported ["S256"] in authorization server metadata.
+- id: rfc9207
+  name: OAuth 2.0 Authorization Server Issuer Identification (RFC 9207)
+  conforms: true
+  evidence: authorization_response_iss_parameter_supported true.
+- id: mcp
+  name: Model Context Protocol
+  conforms: true
+  evidence: >-
+    A live MCP endpoint is registered and OAuth-protected at
+    https://nidrarls.com/wp-json/mcp/mcp-oauth-server. Protocol version could not be
+    negotiated anonymously — initialize also returns 401 — so conformance is asserted for
+    the transport and authorization layer only, not for a specific MCP spec revision.
+- id: llmstxt
+  name: llms.txt
+  conforms: true
+  evidence: >-
+    https://nidrarls.com/llms.txt returns HTTP 200 text/plain with an H1, a blockquote
+    summary and linked sections, and points at hand-authored .md twins of the site's pages.
+- id: rfc9116
+  name: security.txt (RFC 9116)
+  conforms: false
+  evidence: /.well-known/security.txt returned 404 on nidrarls.com.
+- id: openapi
+  name: OpenAPI
+  conforms: false
+  evidence: >-
+    No OpenAPI/Swagger document was found. Probed /openapi.json, /openapi.yaml,
+    /swagger.json, /api-docs on nidrarls.com (all 404) and on noctrixhealth.com (all
+    answered with the HTTP 202 bot challenge).
+- id: asyncapi
+  name: AsyncAPI
+  conforms: false
+  evidence: No event, streaming or webhook surface is published.
+- id: rfc9457
+  name: Problem Details for HTTP APIs (RFC 9457)
+  conforms: false
+  evidence: >-
+    Errors observed on the WordPress REST and MCP routes use the WordPress envelope
+    {"code","message","data":{"status"}} with content-type application/json, not
+    application/problem+json.
+- id: oidc
+  name: OpenID Connect
+  conforms: false
+  evidence: /.well-known/openid-configuration returned 404 on nidrarls.com.
+domain_standards:
+- id: fhir
+  name: HL7 FHIR
+  conforms: false
+  evidence: >-
+    Checked as the obvious candidate for a healthcare provider. Noctrix Health ships a
+    prescription neurostimulation device (Nidra NTX TOMAC) and a patient app, not a health
+    data exchange surface; no FHIR base URL, CapabilityStatement or resource endpoint is
+    published, and the only public API surface on either host is the site CMS plus the MCP
+    server. Recorded as an honest absence — no domain data standard is claimed or implied.
+regulatory:
+  fda: >-
+    The Nidra Tonic Motor Activation (TOMAC) System holds FDA De Novo marketing
+    authorization (granted April 2023, DEN220059) and a 2020 Breakthrough Device
+    Designation. This is device regulation, not an API standard, and earns no contract
+    conformance here; it is recorded because it is the governing regime for the product.
+  hipaa_claim: >-
+    No trust center, SOC 2, ISO 27001 or HIPAA attestation page was found on either host.
+checked: '2026-08-26'

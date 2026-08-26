@@ -1,0 +1,104 @@
+generated: '2026-08-26'
+method: probed
+source: >-
+  https://nidrarls.com/wp-json/ (observed responses) +
+  https://nidrarls.com/.well-known/oauth-authorization-server
+name: Noctrix Health API conventions
+description: >-
+  Noctrix Health publishes no developer documentation, so there is no stated convention
+  set to record. Everything below was observed directly on live responses from the only
+  two machine-readable surfaces the company exposes — the Nidra site's WordPress REST API
+  and the OAuth-gated MCP endpoint on the same host. Anything not observed is marked
+  unknown rather than assumed.
+scope_note: >-
+  These are the conventions of the surfaces that exist today. They are NOT a published
+  API contract and should not be read as one.
+authentication:
+  style: >-
+    OAuth 2.0 bearer token in the Authorization header for the MCP endpoint; anonymous
+    read for the public WordPress REST routes.
+  header: 'Authorization: Bearer <token>'
+  challenge: RFC 9728 WWW-Authenticate with resource_metadata pointer
+  detail: authentication/noctrix-health-authentication.yml
+idempotency:
+  supported: unknown
+  header: null
+  evidence: >-
+    No idempotency key, header or retry-safety statement is documented anywhere on either
+    host, and no public write surface exists to observe one on. Recorded as unknown, not
+    as absent, and no Idempotency pointer is emitted for it.
+pagination:
+  style: page-number
+  observed_on: https://nidrarls.com/wp-json/wp/v2/*
+  request_params: [page, per_page, offset, search, order, orderby]
+  response_headers:
+  - name: X-WP-Total
+    meaning: total matching items
+  - name: X-WP-TotalPages
+    meaning: total pages at the current per_page
+  - name: Link
+    meaning: 'RFC 8288 rel="next" / rel="prev" cursors'
+  evidence: >-
+    GET /wp-json/wp/v2/posts?per_page=1 returned X-WP-Total 2, X-WP-TotalPages 2 and
+    Link <.../posts?per_page=1&page=2>; rel="next" on 2026-08-26.
+  note: WordPress core convention, not a Noctrix Health design decision.
+sparse_fields:
+  supported: true
+  param: _fields
+  note: WordPress core `_fields` query parameter; observed available on wp/v2 routes.
+error_envelope:
+  format: wordpress
+  media_type: application/json
+  shape: '{"code": "<slug>", "message": "<human text>", "data": {"status": <http code>}}'
+  rfc9457: false
+  observed:
+  - code: rest_no_route
+    status: 404
+  - code: mcp_unauthorized
+    status: 401
+  - code: rest_forbidden
+    status: 401
+  detail: >-
+    No error catalog is published, so errors/ was not written — there is nothing to
+    catalog beyond the three envelopes observed above.
+rate_limit_signaling:
+  headers: none observed
+  status_on_exhaustion: unknown
+  detail: rate-limits/noctrix-health-rate-limits.yml
+versioning:
+  scheme: path
+  observed: >-
+    /wp-json/<namespace>/<version>/ — e.g. wp/v2, wp-abilities/v1. The MCP namespace
+    ("mcp") carries no version segment.
+  policy_published: false
+request_tracing:
+  request_id_header: none observed
+  note: No correlation or request-id header is returned on any observed response.
+reversibility:
+  state: na
+  grade: na
+  rationale: >-
+    There is no public write surface. The WordPress REST routes reject anonymous writes,
+    and the MCP endpoint is OAuth-gated so its tool set — and therefore whether any tool
+    writes at all — could not be enumerated. With nothing an agent can change, there is
+    nothing to reverse. Re-evaluate if the MCP tool list is ever published or opened.
+  write_surfaces: []
+  reversal_operations: []
+  documented_windows: []
+  note: >-
+    NOT a finding that actions are irreversible — a finding that no reachable action
+    exists. No reversal window is asserted because the provider states none.
+dry_run_mode:
+  state: na
+  rationale: No public write surface; nothing to rehearse.
+agent_surface_notes:
+  llms_txt: https://nidrarls.com/llms.txt
+  markdown_twins: >-
+    Hand-authored .md twins of the site's key pages (/nidra.md, /do-i-qualify.md,
+    /benefits.md, /cost.md, /learn.md, /patient-support.md, /isi.md and the /hcp-page/*
+    set) are linked from llms.txt and serve text/plain. /privacy-policy.md is advertised in
+    llms.txt but returns 404 — the one broken promise in that file.
+  robots_txt: >-
+    robots.txt explicitly Allows GPTBot, CCBot and Google-Extended, so the AI-crawler
+    posture is opt-in rather than default.
+checked: '2026-08-26'

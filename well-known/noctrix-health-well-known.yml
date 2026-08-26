@@ -1,0 +1,77 @@
+generated: '2026-08-26'
+method: probed
+source: https://nidrarls.com/.well-known/
+name: Noctrix Health well-known discovery documents
+description: >-
+  Anonymous probe of the RFC-defined /.well-known/ namespace on every host Noctrix
+  Health operates. The product host (nidrarls.com) serves OAuth 2.0 Authorization
+  Server Metadata (RFC 8414) and OAuth 2.0 Protected Resource Metadata (RFC 9728),
+  both of which point at a Model Context Protocol server on the same host. The
+  corporate host (noctrixhealth.com) answers every path with an HTTP 202 SiteGround
+  captcha interstitial, so nothing there could be read anonymously.
+hosts:
+- host: nidrarls.com
+  note: >-
+    Nidra product + patient/HCP site. WordPress. Serves real OAuth discovery documents.
+  documents:
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    file: noctrix-health-oauth-authorization-server.json
+    content_type: application/json
+    note: RFC 8414 metadata; issuer https://nidrarls.com, PKCE S256, scope "mcp".
+  - path: /.well-known/oauth-protected-resource
+    status: 200
+    file: noctrix-health-oauth-protected-resource.json
+    content_type: application/json
+    note: >-
+      RFC 9728 metadata naming https://nidrarls.com/wp-json/mcp/mcp-oauth-server as the
+      protected resource — this is how the MCP server was discovered.
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+  - path: /.well-known/mcp.json
+    status: 404
+- host: noctrixhealth.com
+  note: >-
+    Corporate site. Every path (including / and /robots.txt) returns HTTP 202 with a
+    meta-refresh to /.well-known/sgcaptcha/ — a SiteGround bot challenge. No document
+    of any kind was readable anonymously; this is a challenge, not an absence.
+  documents:
+  - path: /.well-known/security.txt
+    status: 202
+    note: bot-challenge interstitial, not a document
+  - path: /.well-known/openid-configuration
+    status: 202
+    note: bot-challenge interstitial, not a document
+  - path: /.well-known/oauth-authorization-server
+    status: 202
+    note: bot-challenge interstitial, not a document
+  - path: /.well-known/api-catalog
+    status: 202
+    note: bot-challenge interstitial, not a document
+  - path: /.well-known/ai-plugin.json
+    status: 202
+    note: bot-challenge interstitial, not a document
+  - path: /.well-known/agent-card.json
+    status: 202
+    note: bot-challenge interstitial, not a document
+  - path: /.well-known/agent.json
+    status: 202
+    note: bot-challenge interstitial, not a document
+findings:
+  security_txt: false
+  openid_configuration: false
+  oauth_authorization_server: true
+  api_catalog: false
+  ai_plugin: false
+  agent_card: false
+checked: '2026-08-26'

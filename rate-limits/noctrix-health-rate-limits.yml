@@ -1,0 +1,31 @@
+generated: '2026-08-26'
+method: probed
+source: https://nidrarls.com/wp-json/wp/v2/posts
+name: Noctrix Health rate limits
+description: >-
+  Noctrix Health documents no rate limits. There is no developer portal, no API reference
+  and no terms-of-use clause naming a request ceiling. Live unauthenticated responses from
+  the only reachable machine-readable surface return no rate-limit headers of any kind, so
+  a consumer has neither a documented number nor a runtime signal to work from.
+limit_count: 0
+limits: []
+response_headers:
+  observed: []
+  checked_for: [X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, RateLimit, RateLimit-Policy, Retry-After]
+  note: >-
+    None present on GET https://nidrarls.com/wp-json/wp/v2/posts?per_page=1 (HTTP 200) on
+    2026-08-26.
+status_on_exhaustion: unknown
+gated_surface:
+  endpoint: https://nidrarls.com/wp-json/mcp/mcp-oauth-server
+  note: >-
+    The MCP endpoint is OAuth-gated (401), so any limits applied to authenticated MCP
+    traffic could not be observed. Absence here is unmeasured, not proven zero.
+edge:
+  server: LiteSpeed
+  platform: hostinger
+  note: >-
+    The corporate host noctrixhealth.com sits behind a SiteGround bot challenge that
+    returns HTTP 202 with a captcha interstitial for every path — an access control, not a
+    published rate limit.
+checked: '2026-08-26'

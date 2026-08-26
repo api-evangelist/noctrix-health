@@ -1,0 +1,60 @@
+generated: '2026-08-26'
+method: probed
+source: https://nidrarls.com/.well-known/oauth-authorization-server
+name: Noctrix Health authentication profile
+description: >-
+  Noctrix Health publishes no developer program, no API keys and no documented auth page.
+  The only authenticated surface that could be established anonymously is the OAuth 2.0
+  authorization server backing the Nidra MCP server on nidrarls.com, whose configuration
+  was read verbatim from RFC 8414 Authorization Server Metadata. Everything below comes
+  from that document and from the WWW-Authenticate challenge the MCP endpoint returns —
+  nothing is inferred from marketing prose.
+schemes:
+- id: nidra-mcp-oauth2
+  type: oauth2
+  applies_to: https://nidrarls.com/wp-json/mcp/mcp-oauth-server
+  flows:
+    authorization_code:
+      authorization_url: https://nidrarls.com/oauth/authorize
+      token_url: https://nidrarls.com/oauth/token
+      refresh_url: https://nidrarls.com/oauth/token
+      revocation_url: https://nidrarls.com/oauth/revoke
+      scopes:
+        mcp: Access to the Model Context Protocol server.
+  pkce:
+    required_methods: [S256]
+  grant_types: [authorization_code, refresh_token]
+  response_types: [code]
+  token_endpoint_auth_methods: [none]
+  public_client: true
+  client_registration:
+    dynamic_registration_endpoint: null
+    client_id_metadata_document_supported: true
+    note: >-
+      No registration_endpoint is advertised. The server declares
+      client_id_metadata_document_supported, i.e. a client identifies itself with a URL
+      that resolves to its own client metadata document rather than pre-registering.
+  bearer:
+    methods_supported: [header]
+    challenge_observed: >-
+      Bearer realm="https://nidrarls.com",
+      resource_metadata="https://nidrarls.com/.well-known/oauth-protected-resource"
+    http_status_on_missing_token: 401
+    error_body: '{"code":"mcp_unauthorized","message":"MCP authentication required.","data":{"status":401}}'
+  iss_parameter_supported: true
+unauthenticated_surfaces:
+- surface: https://nidrarls.com/wp-json/wp/v2/*
+  auth: none
+  note: >-
+    The site's WordPress REST API answers read requests anonymously (HTTP 200). This is a
+    CMS default on the marketing/product site, not a published Noctrix Health developer
+    API, and is recorded for completeness only.
+not_found:
+  api_keys: No API key issuance, key prefix or key management surface is published.
+  openid_connect: /.well-known/openid-configuration returned 404 on nidrarls.com.
+  mutual_tls: Not advertised.
+  docs_page: >-
+    No developer or authentication documentation page exists on either host. The
+    corporate host noctrixhealth.com is behind a SiteGround bot challenge (HTTP 202)
+    for every path, so it could not be read anonymously.
+checked: '2026-08-26'

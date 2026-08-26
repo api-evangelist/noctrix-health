@@ -1,0 +1,24 @@
+generated: '2026-08-26'
+method: searched
+source: https://nidrarls.com/cost/
+name: Noctrix Health plans and pricing
+description: >-
+  Noctrix Health publishes no API plans, developer tiers, quotas or usage pricing of any
+  kind, because it does not sell API access. The company sells a prescription medical
+  device — the Nidra Tonic Motor Activation (TOMAC) System — and its public pricing page
+  covers patient cost and insurance coverage for that device, not an API product. Recorded
+  as an explicit zero so the absence is legible rather than looking unchecked.
+plan_count: 0
+plans: []
+api_pricing_published: false
+product_pricing:
+  page: https://nidrarls.com/cost/
+  http_status: 200
+  model: prescription medical device; patient cost and insurance coverage
+  note: >-
+    Not an API plan. Listed only to record what the provider's pricing surface actually
+    covers. No dollar figures are reproduced here because they are coverage-dependent and
+    stated conditionally on the page.
+free_tier: null
+enterprise_contact_only: false
+checked: '2026-08-26'
