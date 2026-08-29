@@ -13,6 +13,17 @@ description: >-
   it serves a hand-authored llms.txt with markdown twins of every key page, opts AI
   crawlers in via robots.txt, and runs a live OAuth-protected Model Context Protocol
   server discoverable through RFC 8414 and RFC 9728 well-known metadata.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 image: https://nidrarls.com/themes/nidra/assets/img/nidra-logo.png
 url: https://raw.githubusercontent.com/api-evangelist/noctrix-health/refs/heads/main/apis.yml
 x-type: company
