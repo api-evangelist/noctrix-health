@@ -42,6 +42,17 @@ tags:
 - Neurology
 - Neurostimulation
 - Wearables
+- MCP
+- Agent Readiness
+tags_raw:
+- Company
+- Health
+- Medical Devices
+- Digital Health
+- Sleep
+- Neurology
+- Neurostimulation
+- Wearables
 - Model Context Protocol
 - Agent Readiness
 apis:
@@ -58,6 +69,10 @@ apis:
   humanURL: https://nidrarls.com/
   baseURL: https://nidrarls.com/wp-json/mcp/mcp-oauth-server
   tags:
+  - MCP
+  - Authentication
+  - Agent Readiness
+  tags_raw:
   - Model Context Protocol
   - OAuth
   - Agent Readiness
